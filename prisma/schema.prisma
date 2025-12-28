@@ -20,9 +20,31 @@ enum Role {
   Admin
 }
 
-model User{
-  id Int @id @default(autoincrement())
+model User {
+  id       Int    @id @default(autoincrement())
   username String @unique
-  password String 
-  role Role 
+  password String
+  role     Role
+}
+
+model Course {
+  id            Int            @id @default(autoincrement()) // primary key
+  uuid          String         @unique @default(uuid()) // unique UUID
+  courseId      String         @unique // e.g., "CS101"
+  name          String // course name
+  faculty       String // faculty in charge
+  registrations Registration[]
+}
+
+model Registration {
+  id           Int      @id @default(autoincrement())
+  studentId    Int
+  courseId     Int
+  semester     String
+  registeredAt DateTime @default(now())
+
+  // Relations
+  course Course @relation(fields: [courseId], references: [id])
+
+  @@unique([studentId, courseId, semester]) // prevent duplicate registration
 }

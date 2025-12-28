@@ -5,12 +5,12 @@ export default function StudentDashboard() {
   const router = useRouter();
 
   const menuItems = [
-    { label: "Register for Subjects", route: "/student/register", color: "bg-blue-500 text-white" },
-    { label: "View Marks & Grades", route: "/student/marks", color: "bg-green-500 text-white" },
-    { label: "Submit Re-evaluation Request", route: "/student/revaluation", color: "bg-yellow-500 text-white" },
-    { label: "View Course Content", route: "/student/content", color: "bg-purple-500 text-white" },
-    { label: "View Timetable", route: "/student/timetable", color: "bg-pink-500 text-white" },
-    { label: "Attendance Records", route: "/student/attendance", color: "bg-red-500 text-white" },
+    { label: "Register for Subjects", route: "/roles/student/register", color: "bg-blue-500 text-white" },
+    { label: "View Marks & Grades", route: "/roles/student/marks", color: "bg-green-500 text-white" },
+    { label: "Submit Re-evaluation Request", route: "/roles/student/revaluation", color: "bg-yellow-500 text-white" },
+    { label: "View Course Content", route: "/roles/student/content", color: "bg-purple-500 text-white" },
+    { label: "View Timetable", route: "/roles/student/timetable", color: "bg-pink-500 text-white" },
+    { label: "Attendance Records", route: "/roles/student/attendance", color: "bg-red-500 text-white" },
   ];
 
   return (
