@@ -1,92 +1,37 @@
-import React from "react";
+"use client";
+import { useRouter } from "next/navigation";
 
-const cards = [
-  {
-    title: "Courses",
-    content: ["Physics 101", "Mathematics", "Computer Science"],
-    color: "bg-blue-600",
-    textColor: "text-white",
-  },
-  {
-    title: "Assignments",
-    content: ["Lab Report - Physics", "Homework - Math", "Project - CS"],
-    color: "bg-green-600",
-    textColor: "text-white",
-  },
-  {
-    title: "Profile",
-    content: ["Name: John Doe", "Email: john@example.com", "Year: 2nd Year"],
-    color: "bg-purple-600",
-    textColor: "text-white",
-  },
-  {
-    title: "Messages",
-    content: ["You have 2 new messages."],
-    color: "bg-pink-500",
-    textColor: "text-white",
-  },
-  {
-    title: "Grades",
-    content: ["Physics 101: A", "Mathematics: B+", "Computer Science: A-"],
-    color: "bg-yellow-500",
-    textColor: "text-black",
-  },
-  {
-    title: "Notifications",
-    content: ["No new notifications."],
-    color: "bg-red-600",
-    textColor: "text-white",
-  },
-];
+export default function StudentDashboard() {
+  const router = useRouter();
 
-type CardProps = {
-  title: string;
-  content: string[];
-  color: string;
-  textColor: string;
-};
+  const menuItems = [
+    { label: "Register for Subjects", route: "/student/register", color: "bg-blue-500 text-white" },
+    { label: "View Marks & Grades", route: "/student/marks", color: "bg-green-500 text-white" },
+    { label: "Submit Re-evaluation Request", route: "/student/revaluation", color: "bg-yellow-500 text-white" },
+    { label: "View Course Content", route: "/student/content", color: "bg-purple-500 text-white" },
+    { label: "View Timetable", route: "/student/timetable", color: "bg-pink-500 text-white" },
+    { label: "Attendance Records", route: "/student/attendance", color: "bg-red-500 text-white" },
+  ];
 
-const Card: React.FC<CardProps> = ({ title, content, color, textColor }) => (
-  <div className={`${color} ${textColor} rounded-xl shadow-lg p-5 hover:scale-105 transition-transform`}>
-    <h2 className="text-2xl font-bold mb-3">{title}</h2>
-    <ul className="list-disc list-inside">
-      {content.map((item, idx) => (
-        <li key={idx}>{item}</li>
-      ))}
-    </ul>
-  </div>
-);
-
-const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-linear-to-r from-indigo-500 via-pink-500 to-orange-400 font-sans p-6">
+    <div className="min-h-screen bg-white flex justify-center items-center p-8">
+      <div className="max-w-5xl w-full">
+        <h1 className="text-3xl font-semibold text-gray-900 mb-10 text-center">
+          Student Dashboard
+        </h1>
 
-      {/* Header */}
-      <header className="bg-indigo-800 text-yellow-200 p-6 rounded-xl shadow-lg mb-6">
-        <h1 className="text-3xl font-extrabold text-center">Student Dashboard</h1>
-      </header>
-
-      {/* Main content */}
-      <main>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cards.map((card, idx) => (
-            <Card
-              key={idx}
-              title={card.title}
-              content={card.content}
-              color={card.color}
-              textColor={card.textColor}
-            />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {menuItems.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => router.push(item.route)}
+              className={`w-full border border-gray-300 rounded-xl p-6 shadow-sm text-left font-medium ${item.color}`}
+            >
+              {item.label}
+            </button>
           ))}
         </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="mt-8 bg-purple-700 text-yellow-200 p-6 rounded-xl shadow-lg text-center text-lg">
-        © 2025 Student Dashboard
-      </footer>
+      </div>
     </div>
   );
-};
-
-export default App;
+}
